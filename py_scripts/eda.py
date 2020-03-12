@@ -16,9 +16,10 @@ class Explore():
         descr.loc[:, 'na %'] = na_counts/descr['count']
         
         self.descr = descr.T
+        print(self.descr)
 
     def completeness(self):
         return self.df.isna().sum(axis = 0)
 
-    
+
     
