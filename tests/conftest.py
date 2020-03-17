@@ -15,3 +15,15 @@ def iris_data():
     
     return df
 
+@pytest.fixture
+def model_data():
+
+    ids = np.arange(10)
+    names = ['A', None, 'C', 'D', 'E', None, None, 'C', 'A', None]
+    marks = [10, 50, 30, 20, None, 50, 30, 20, 90, None]
+    subjects = ['Sci', 'Math', 'Comp', 'Sci', 'Math', 'Hindi', 'Comp', 'Hindi', 'Math', 'Math']
+    ages = [18, 17, 16, 17, 18, 19, 20, 16, 18, 17]
+
+    df = pd.DataFrame({'ID': ids, 'Name': names, 'Subject': subjects, 'Marks': marks, 'Age': ages})
+
+    return df
