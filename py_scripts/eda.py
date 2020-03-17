@@ -2,6 +2,7 @@ import os
 import time
 import numpy as np 
 import pandas as pd 
+import seaborn as sns
 import matplotlib.pyplot as plt 
 
 
@@ -26,7 +27,7 @@ class Explore():
 
     def catDescribe(self):
         try:
-            assert self.num_descr != None
+            assert isinstance(self.num_descr, pd.DataFrame)
         except:
             print('Warning: numDescribe function needs to be called before catDescribe')
             self.numDescribe()
@@ -44,7 +45,17 @@ class Explore():
         return self.df[cols].isna().sum(axis = 0)
     
     
+    def univariatePlots(self, c = 5):
 
+        r = int(np.ceil(len(self.num_cols)/c))
+        f, ax = plt.subplots(r, c, figsize = (5*r, 5*c))
+        for i, col in enumerate(self.num_cols):
+            k = i%c
+            j = int((i-k)/c)
+            pl = sns.distplot(self.df[self.df[col].isna() == False][col], ax = ax[j][k])
+            pl.set_title('{} Distribution'.format(col))
+
+        plt.show()
 
 
     
